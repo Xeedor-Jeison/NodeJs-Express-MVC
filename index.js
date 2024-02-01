@@ -2,11 +2,12 @@ const express = require('express');
 const path = require('node:path');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
-// const URI = `mongodb+srv://jeisonjacome:Xjeison1.@cluster0.uz1bpbr.mongodb.net/`
 const routes = require('./router/index');
 const app = express();
 
+// Asigna un puerto disponible, en caso de que el elegido este ocupado (uso de desarrollo)
 const { findAvaliablePort } = require('./controllers/free.port')
+
 dotenv.config({ path: './config.env'})
 // Para leer los datos del formulario
 app.use(express.json());
