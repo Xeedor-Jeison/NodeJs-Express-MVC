@@ -5,6 +5,8 @@ const dotenv = require('dotenv');
 // const URI = `mongodb+srv://jeisonjacome:Xjeison1.@cluster0.uz1bpbr.mongodb.net/`
 const routes = require('./router/index');
 const app = express();
+
+const { findAvaliablePort } = require('./controllers/free.port')
 dotenv.config({ path: './config.env'})
 // Para leer los datos del formulario
 app.use(express.json());
@@ -32,4 +34,8 @@ app.use(express.static('./public'));
 // Definir rutas de la aplicación
 app.use('/',routes());
 
-app.listen(3000);
+findAvaliablePort(3005).then(port => {
+  app.listen(port, () => {
+    console.log(`server listing on port http://localhost:${port}`)
+  })
+})
